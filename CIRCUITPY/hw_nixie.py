@@ -6,7 +6,7 @@ from hw_K155ID1 import outputs as Q
 
 
 
-def setdigit(n, tube):
+def set_digit(digit, tube):
     if tube < 5:
         bus = 1
     else:
@@ -15,25 +15,33 @@ def setdigit(n, tube):
     
     offset = (tube - 1) * 4
     
-    ioexp.set_pin(bus, 1 + offset, Q[n][0])
-    ioexp.set_pin(bus, 2 + offset, Q[n][1])
-    ioexp.set_pin(bus, 3 + offset, Q[n][2])
-    ioexp.set_pin(bus, 4 + offset, Q[n][3])
+    ioexp.set_pin(bus, 1 + offset, Q[digit][0])
+    ioexp.set_pin(bus, 2 + offset, Q[digit][1])
+    ioexp.set_pin(bus, 3 + offset, Q[digit][2])
+    ioexp.set_pin(bus, 4 + offset, Q[digit][3])
 
 
-def setdot(n, side="R"):
+def set_dot(tube, side="R"):
+    if tube != None:
+        tube += - 1
+
     if side == "R":
-        RA.value = Q[n][0]
-        RB.value = Q[n][1]
-        RC.value = Q[n][2]
-        RD.value = Q[n][3]
+        RA.value = Q[tube][0]
+        RB.value = Q[tube][1]
+        RC.value = Q[tube][2]
+        RD.value = Q[tube][3]
     else:
-        LA.value = Q[n][0]
-        LB.value = Q[n][1]
-        LC.value = Q[n][2]
-        LD.value = Q[n][3]
+        LA.value = Q[tube][0]
+        LB.value = Q[tube][1]
+        LC.value = Q[tube][2]
+        LD.value = Q[tube][3]
 
-
+def all_off():
+    ioexp.set_all(1)
+    set_dot(None, "R")
+    set_dot(None, "L")
+    
+    
 
 # Left dots
 LA = digitalio.DigitalInOut(board.GP19)
