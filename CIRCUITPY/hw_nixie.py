@@ -11,6 +11,7 @@ def setdigit(n, tube):
         bus = 1
     else:
         bus = 2
+        tube += -4 # for bus 2 start pin offset at 0 again
     
     offset = (tube - 1) * 4
     
