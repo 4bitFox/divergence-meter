@@ -31,11 +31,10 @@ class PCA9535:
         output_value = sum([(1 << i) if self.output_state[i] else 0 for i in range(16)])
         self._write_register(OUTPUT_REG, output_value)
 
-    def write_pin(self, pin, value):
+    def set_pin(self, pin, value):
         pin += -1 # shift start from 1 to 0
         if 0 <= pin < 16:
             self.output_state[pin] = 1 if value else 0
-            self.update_output_register()
         else:
             raise Exception("Pin out of range!")
 
@@ -52,13 +51,17 @@ def set_pin(bus, pin, value):
         bus = b1
     else:
         bus = b2
-    bus.write_pin(pin, value)
+    bus.set_pin(pin, value)
+
+def update():
+    b1.update_output_register()
+    b2.update_output_register()
 
 
 def set_all(value):
     for bus in (b1, b2):
         bus.output_state = [value] * 16
-        bus.update_output_register()
+    update()
 
 i2c = busio.I2C(scl=board.GP3, sda=board.GP2)
 
