@@ -6,6 +6,20 @@ from hw_K155ID1 import outputs as Q
 
 
 
+dots = {"R": None, "L": None}
+
+
+
+
+def update():
+    """
+    display the pending changes on the nixies.
+    """
+    update_dot(dots["R"], "R")
+    update_dot(dots["L"], "L")
+    ioexp.update()
+
+
 def set_digit(digit, tube):
     if tube < 5:
         bus = 1
@@ -21,7 +35,10 @@ def set_digit(digit, tube):
     ioexp.set_pin(bus, 4 + offset, Q[digit][3])
 
 
-def set_dot(tube, side="R"):
+def set_dot(tube=None, side="R"):
+    dots[side] = tube
+
+def update_dot(tube=None, side="R"):
     if tube != None:
         tube += - 1
 
@@ -61,4 +78,3 @@ RC = digitalio.DigitalInOut(board.GP14)
 RC.direction = digitalio.Direction.OUTPUT
 RD = digitalio.DigitalInOut(board.GP15)
 RD.direction = digitalio.Direction.OUTPUT
-
