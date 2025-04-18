@@ -15,3 +15,15 @@ def set_dt(Y, M, D, h, m, s):
     
 def get_struct_time():
     return rtc.datetime
+
+def set_dt_input():
+    Y = int(input("Input Year in YYYY: "))
+    M = int(input("Input Month in MM: "))
+    D = int(input("Input Year in DD: "))
+    h = int(input("Input Hour in hh: "))
+    m = int(input("Input Minutes in mm: "))
+    s = int(input("Input Seconds in ss: "))
+    
+    set_dt(Y, M, D, h, m, s)
+    print("Done!")
+
