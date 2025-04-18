@@ -60,6 +60,7 @@ def all_off():
     ioexp.set_all(1)
     set_dot(None, "R")
     set_dot(None, "L")
+    update()
     
     
 def init():
