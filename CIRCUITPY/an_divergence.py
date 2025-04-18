@@ -19,7 +19,7 @@ def display(divergence):
     n.update()
 
 
-def animation(divergence=None, beginning_sleep=1, end_sleep=3, loop_sleep=0.012, fix_interval=0.3):
+def animation(divergence=None, beginning_sleep=1.5, fix_delay=2, end_sleep=3, loop_sleep=0.012, fix_interval=0.3):
     global last_divergence
     display(last_divergence)
     sleep(beginning_sleep)
@@ -29,7 +29,7 @@ def animation(divergence=None, beginning_sleep=1, end_sleep=3, loop_sleep=0.012,
         divergence = f"{divergence_float:.8f}"
     
     fixed_digits = [False, False, False, False, False, False, False, False]
-    time_refrence = monotonic()
+    time_refrence = monotonic() + fix_delay
     while True:
         time = monotonic()
         if time - time_refrence >= fix_interval:
@@ -58,3 +58,4 @@ def animation(divergence=None, beginning_sleep=1, end_sleep=3, loop_sleep=0.012,
     
     last_divergence = divergence
     sleep(end_sleep)
+    n.all_off()
