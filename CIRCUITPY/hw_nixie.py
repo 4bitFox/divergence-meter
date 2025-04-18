@@ -6,7 +6,10 @@ from hw_K155ID1 import outputs as Q
 
 
 
+_initialized = False
 dots = {"R": None, "L": None}
+RA = RB = RC = RD = None # Get's assigned in init()
+LA = LB = LC = LD = None # Get's assigned in init()
 
 
 
@@ -59,22 +62,34 @@ def all_off():
     set_dot(None, "L")
     
     
+def init():
+    global _initialized, RA, RB, RC, RD, LA, LB, LC, LD
+    if _initialized:
+        return
+    
+    # Left dots
+    LA = digitalio.DigitalInOut(board.GP19)
+    LA.direction = digitalio.Direction.OUTPUT
+    LB = digitalio.DigitalInOut(board.GP18)
+    LB.direction = digitalio.Direction.OUTPUT
+    LC = digitalio.DigitalInOut(board.GP17)
+    LC.direction = digitalio.Direction.OUTPUT
+    LD = digitalio.DigitalInOut(board.GP16)
+    LD.direction = digitalio.Direction.OUTPUT
+    # Right dots
+    RA = digitalio.DigitalInOut(board.GP12)
+    RA.direction = digitalio.Direction.OUTPUT
+    RB = digitalio.DigitalInOut(board.GP13)
+    RB.direction = digitalio.Direction.OUTPUT
+    RC = digitalio.DigitalInOut(board.GP14)
+    RC.direction = digitalio.Direction.OUTPUT
+    RD = digitalio.DigitalInOut(board.GP15)
+    RD.direction = digitalio.Direction.OUTPUT
 
-# Left dots
-LA = digitalio.DigitalInOut(board.GP19)
-LA.direction = digitalio.Direction.OUTPUT
-LB = digitalio.DigitalInOut(board.GP18)
-LB.direction = digitalio.Direction.OUTPUT
-LC = digitalio.DigitalInOut(board.GP17)
-LC.direction = digitalio.Direction.OUTPUT
-LD = digitalio.DigitalInOut(board.GP16)
-LD.direction = digitalio.Direction.OUTPUT
-# Right dots
-RA = digitalio.DigitalInOut(board.GP12)
-RA.direction = digitalio.Direction.OUTPUT
-RB = digitalio.DigitalInOut(board.GP13)
-RB.direction = digitalio.Direction.OUTPUT
-RC = digitalio.DigitalInOut(board.GP14)
-RC.direction = digitalio.Direction.OUTPUT
-RD = digitalio.DigitalInOut(board.GP15)
-RD.direction = digitalio.Direction.OUTPUT
+    update()
+    _initialized = True
+    
+    
+    
+    
+init()
