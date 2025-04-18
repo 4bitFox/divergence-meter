@@ -31,6 +31,8 @@ def test(t = 1):
                 dot_pos += 1
             if dot_pos > 8:
                 dot_pos = None
+            
+            n.update()
             sleep(t)
 
 
