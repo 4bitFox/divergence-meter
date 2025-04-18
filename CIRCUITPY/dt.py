@@ -1,16 +1,22 @@
 import adafruit_datetime as dt
+import hw_rtc as rtc
 import time
 
 
+def get_dt_tuple():
+    struct_time = rtc.get_struct_time()
+    d = tuple_of_digits(struct_time)
+    return d
+
 def tuple_of_digits(struct_time):
     """
-    returns a tuple like (2, 0, 2, 5, 0, 3, 2, 9, 2, 0, 1, 4, 2, 8, 1, 3, 6, 0, 8, 8)
-                          Y  Y  Y  Y  M  M  D  D  h  h  m  m  s  s  cw cw wd yd yd yd
+    returns a tuple like (2, 0, 2, 5, 0, 3, 2, 9, 2, 0, 1, 4, 2, 8, 6, 1, 3, 0, 8, 8)
+                          Y  Y  Y  Y  M  M  D  D  h  h  m  m  s  s  wd cw cw yd yd yd
     """
     weekday = _weekday(struct_time)
     calendar_week = _calendar_week(struct_time)
     day_of_year = _day_of_year(struct_time)
-    string_time = f"{struct_time.tm_year:04}{struct_time.tm_mon:02}{struct_time.tm_mday:02}{struct_time.tm_hour:02}{struct_time.tm_min:02}{struct_time.tm_sec:02}{calendar_week:02}{weekday:01}{day_of_year:03}"
+    string_time = f"{struct_time.tm_year:04}{struct_time.tm_mon:02}{struct_time.tm_mday:02}{struct_time.tm_hour:02}{struct_time.tm_min:02}{struct_time.tm_sec:02}{weekday:01}{calendar_week:02}{day_of_year:03}"
     digits = []
     for digit in string_time:
         digits.append(int(digit))
