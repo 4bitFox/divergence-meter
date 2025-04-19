@@ -19,7 +19,7 @@ def display(divergence):
     n.update()
 
 
-def animation(divergence=None, beginning_sleep=1.5, fix_delay=2, end_sleep=3, loop_sleep=0.012, fix_interval=0.3):
+def animation(divergence=None, beginning_sleep=1.5, fix_delay=2, end_sleep=3, loop_sleep=0.012, fix_interval=0.25):
     global last_divergence
     display(last_divergence)
     sleep(beginning_sleep)
@@ -29,11 +29,11 @@ def animation(divergence=None, beginning_sleep=1.5, fix_delay=2, end_sleep=3, lo
         divergence = f"{divergence_float:.8f}"
     
     fixed_digits = [False, False, False, False, False, False, False, False]
-    time_refrence = monotonic() + fix_delay
+    time_reference = monotonic() + fix_delay
     while True:
         time = monotonic()
-        if time - time_refrence >= fix_interval:
-            time_refrence = time
+        if time - time_reference >= fix_interval:
+            time_reference = time
             while True:
                 digit_to_fix = random.randint(0, 7)
                 if fixed_digits[digit_to_fix] == False:
@@ -43,8 +43,8 @@ def animation(divergence=None, beginning_sleep=1.5, fix_delay=2, end_sleep=3, lo
         numbers = str(random.randint(10000000, 99999999))
         numbers_fixed_list = []
         dot_pos = divergence.find(".")
-        for i, fixed_digot_bool in enumerate(fixed_digits):
-            if fixed_digits[i]:
+        for i, fixed_digit_bool in enumerate(fixed_digits):
+            if fixed_digit_bool:
                 if i == dot_pos:
                     numbers_fixed_list.append(".")
                 else:
