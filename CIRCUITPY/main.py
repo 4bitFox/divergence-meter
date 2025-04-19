@@ -1,20 +1,22 @@
 import hw_nixie as n
-import an_test as test
-import an_divergence as divergence
-import an_dt as dt
+import an_test
+import an_divergence
+import an_dt
+import dt
 
 
 
 
 try:
-    test.animation(0.5)
-    divergence.animation()
+    an_test.animation(0.5)
+    an_divergence.animation()
     while True:
-        dt.time()
-        divergence.animation()
-        dt.date()
-        dt.misc()
-        test.routine()
+        an_dt.time()
+        an_divergence.animation()
+        an_dt.date()
+        an_dt.misc()
+        an_test.routine()
+        dt.sync_ntp_routine()
 except BaseException as e:
     print("Error:", e)
 finally:
