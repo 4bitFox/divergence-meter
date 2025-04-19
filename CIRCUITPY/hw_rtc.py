@@ -12,18 +12,10 @@ rtc = adafruit_ds3231.DS3231(i2c)
 
 def set_dt(Y, M, D, h, m, s):
     rtc.datetime = time.struct_time((Y, M, D, h, m, s, -1, -1, -1)) # set datetime.
+
+def set_dt_struct_time(struct_time):
+    rtc.datetime = struct_time
     
 def get_struct_time():
     return rtc.datetime
-
-def set_dt_input():
-    Y = int(input("Input Year in YYYY: "))
-    M = int(input("Input Month in MM: "))
-    D = int(input("Input Year in DD: "))
-    h = int(input("Input Hour in hh: "))
-    m = int(input("Input Minutes in mm: "))
-    s = int(input("Input Seconds in ss: "))
-    
-    set_dt(Y, M, D, h, m, s)
-    print("Done!")
 
