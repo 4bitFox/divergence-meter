@@ -1,0 +1,5 @@
+# WIFI credentials
+WIFI_SSID="ssid"
+WIFI_PASSWORD="password"
+# TimeZone
+TZ_OFFSET=0
