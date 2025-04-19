@@ -29,12 +29,13 @@ def animation_loop(t=0.5, duration=None):
                 dot_pos = None
             
             n.update()
-            if duration != None:
+            sleep(t)
+        
+        if duration != None:
                 time = monotonic()
                 if time - time_reference >= duration:
                     n.all_off()
                     return
-            sleep(t)
 
 
 def animation(t=0.5):
