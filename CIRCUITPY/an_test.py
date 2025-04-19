@@ -7,7 +7,7 @@ from time import sleep, monotonic
 
 def animation_loop(t=0.5, duration=None):
     if duration != None:
-        time_refrence = monotonic()
+        time_reference = monotonic()
     
     dot_pos = 1
     while True:
@@ -31,7 +31,7 @@ def animation_loop(t=0.5, duration=None):
             n.update()
             if duration != None:
                 time = monotonic()
-                if time - time_refrence >= duration:
+                if time - time_reference >= duration:
                     n.all_off()
                     return
             sleep(t)
