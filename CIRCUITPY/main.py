@@ -18,7 +18,7 @@ try:
         an_test.routine()
         dt.sync_ntp_routine()
 except BaseException as e:
-    print("Error:", e)
+    print("CRITICAL ERROR:", e)
 finally:
     n.all_off()
 
