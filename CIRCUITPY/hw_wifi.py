@@ -6,6 +6,7 @@ import adafruit_connection_manager
 
 
 def _connect(wifi_ssid = os.getenv("WIFI_SSID"), wifi_password   = os.getenv("WIFI_PASSWORD")):
+    wifi.radio.enabled = True
     if wifi.radio.connected is False:
         wifi.radio.connect(wifi_ssid, wifi_password)
 
@@ -24,5 +25,6 @@ def get_ntp_struct_time(tz_offset=os.getenv("TZ_OFFSET")):
         _disconnect()
         return struct_time
     except BaseException as e:
-        print(e)
+        print("WIFI ERROR:", e)
         return None
+
