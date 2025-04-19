@@ -42,9 +42,10 @@ def animation(divergence=None, beginning_sleep=1.5, fix_delay=2, end_sleep=3, lo
             
         numbers = str(random.randint(10000000, 99999999))
         numbers_fixed_list = []
+        dot_pos = divergence.find(".")
         for i, fixed_digot_bool in enumerate(fixed_digits):
             if fixed_digits[i]:
-                if i == 1:
+                if i == dot_pos:
                     numbers_fixed_list.append(".")
                 else:
                     numbers_fixed_list.append(divergence[i])
