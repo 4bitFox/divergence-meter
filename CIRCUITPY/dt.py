@@ -1,12 +1,31 @@
 import adafruit_datetime as dt
 import hw_rtc as rtc
+import hw_wifi as wifi
 import time
 
+
+def set_dt(Y, M, D, h, m, s):
+    rtc.set_dt(Y, M, D, h, m, s)
+
+def set_dt_input():
+    Y = int(input("Input Year in YYYY: "))
+    M = int(input("Input Month in MM: "))
+    D = int(input("Input Year in DD: "))
+    h = int(input("Input Hour in hh: "))
+    m = int(input("Input Minutes in mm: "))
+    s = int(input("Input Seconds in ss: "))
+    
+    set_dt(Y, M, D, h, m, s)
+    print("Done!")
+
+def set_dt_struct_time(struct_time):
+    rtc.set_dt_struct_time(struct_time)
 
 def get_dt_tuple():
     struct_time = rtc.get_struct_time()
     d = tuple_of_digits(struct_time)
     return d
+
 
 def tuple_of_digits(struct_time):
     """
@@ -73,3 +92,13 @@ def _calendar_week(struct_time):
 
     return calendar_week
 
+def sync_ntp_routine(force=False):
+    """
+    Sync time with ntp server when it is 03:30 or force=True
+    """
+    d = get_dt_tuple()
+    if d[8] == 0 and d[9] == 3 and d[10] == 3 and d[11] == 0 or force:
+        struct_time = wifi.get_ntp_struct_time()
+        if struct_time != None:
+            set_dt_struct_time(struct_time)
+        
