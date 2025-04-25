@@ -62,3 +62,42 @@ def misc(duration=3):
     n.update()
     sleep(duration)
     n.all_off()
+    
+def ntp_sync(force = False):
+    """
+    Sync time with ntp server when it is 03:30 or force=True
+    """
+    d = dt.get_dt_tuple()
+    
+    if d[8] == 0 and d[9] == 3 and d[10] == 3 and d[11] == 0 or force:
+        for attempts in range(3):
+            for dot_cycles in range(3):
+                for dot_pos in range(1, 5):
+                    n.set_dot(5 - dot_pos, "R")
+                    n.set_dot(4 + dot_pos, "L")
+                    n.update()
+                    sleep(0.2)
+            n.all_off()
+            status = dt.ntp_sync()
+            if status:
+                break
+        if status == True:
+            for i in range(3):
+                if i == 2:
+                    date(duration=2)
+                else:
+                    date(duration=0.5)
+                n.all_off()
+                sleep(0.2)
+        elif status == False:
+            for i in range(3):
+                for tube in range(1, 9):
+                    n.set_digit(0, tube)
+                n.update()
+                if i == 2:
+                    sleep(2)
+                else:
+                    sleep(0.5)
+                n.all_off()
+                sleep(0.2)
+
