@@ -63,6 +63,6 @@ def routine():
     If end of hour is detected, cycle trough all elements as routine
     """
     d = dt.get_dt_tuple()
-    if d[10] == 5 and d[11] == 1:
+    if d[10] == 5 and d[11] == 9:
         animation_loop(t=0.5, duration=60)
 
