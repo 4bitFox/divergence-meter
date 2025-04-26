@@ -25,7 +25,7 @@ def animation(divergence=None, beginning_sleep=1.5, fix_delay=2, end_sleep=3, lo
     sleep(beginning_sleep)
     
     if divergence == None:
-        divergence_float = random.uniform(0.1, 2)
+        divergence_float = random.uniform(0.1, 1.081163)
         divergence = f"{divergence_float:.8f}"
     
     fixed_digits = [False, False, False, False, False, False, False, False]
