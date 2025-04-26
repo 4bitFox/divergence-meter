@@ -1,6 +1,7 @@
 import adafruit_datetime as dt
 import hw_rtc as rtc
 import hw_wifi as wifi
+import cpython_datetime as cdt
 import time
 
 
@@ -34,7 +35,7 @@ def tuple_of_digits(struct_time):
                           Y  Y  Y  Y  M  M  D  D  h  h  m  m  s  s  wd cw cw yd yd yd
     """
     weekday = _weekday(struct_time)
-    calendar_week = _calendar_week(struct_time)
+    calendar_week = iso_calendar_week(struct_time)
     day_of_year = _day_of_year(struct_time)
     string_time = f"{struct_time.tm_year:04}{struct_time.tm_mon:02}{struct_time.tm_mday:02}{struct_time.tm_hour:02}{struct_time.tm_min:02}{struct_time.tm_sec:02}{weekday:01}{calendar_week:02}{day_of_year:03}"
     digits = []
@@ -89,32 +90,28 @@ def _day_of_year(struct_time):
         if month > 2:
             day_of_year += 1
     return day_of_year
-    
-def _calendar_week(struct_time):
+
+def iso_calendar_week(struct_time):
     """
-    Returns the calendar week starting from 1
-    IS INACCURATE NEAR YEAR CHANGE but gud enough ig...
+    Return ISO calendar
     """
     year = struct_time.tm_year
     month = struct_time.tm_mon
-    day_of_month = struct_time.tm_mday
+    day = struct_time.tm_mday
     
-    weekday = _weekday(struct_time)
-    weekday_jan4th = _weekday(year=year, month=1, day_of_month=4)
-    day_of_year = _day_of_year(struct_time)
-    
-    calendar_week = ((day_of_year - ((4 - ((weekday_jan4th - 1) % 7)) - 1)) // 7) + 1
-    
-    if calendar_week < 1:
-        # Belongs to previous year, check if that had 53 weeks
-        prev_year = year - 1
-        weekday_jan1_prev = _weekday(year=prev_year, month=1, day_of_month=1)
-        if weekday_jan1_prev == 4 or (weekday_jan1_prev == 3 and _leap_year(year=prev_year)):
-            calendar_week = 53
-        else:
-            calendar_week = 52
-    
-    return calendar_week
+    week1monday = cdt._isoweek1monday(year)
+    today = cdt._ymd2ord(year, month, day)
+    # Internally, week and day have origin 0
+    week, day = divmod(today - week1monday, 7)
+    if week < 0:
+        year -= 1
+        week1monday = cdt._isoweek1monday(year)
+        week, day = divmod(today - week1monday, 7)
+    elif week >= 52:
+        if today >= cdt._isoweek1monday(year+1):
+            year += 1
+            week = 0
+    return week+1
 
 
 def ntp_sync():
@@ -124,4 +121,3 @@ def ntp_sync():
         return True
     else:
         return False
-
