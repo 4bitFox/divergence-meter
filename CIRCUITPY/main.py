@@ -2,7 +2,6 @@ import hw_nixie as n
 import an_test
 import an_divergence
 import an_dt
-import dt
 from time import sleep
 
 
