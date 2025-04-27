@@ -35,7 +35,7 @@ def tuple_of_digits(struct_time):
                           Y  Y  Y  Y  M  M  D  D  h  h  m  m  s  s  wd cw cw yd yd yd
     """
     weekday = _weekday(struct_time)
-    calendar_week = iso_calendar_week(struct_time)
+    calendar_week = _iso_calendar_week(struct_time)
     day_of_year = _day_of_year(struct_time)
     string_time = f"{struct_time.tm_year:04}{struct_time.tm_mon:02}{struct_time.tm_mday:02}{struct_time.tm_hour:02}{struct_time.tm_min:02}{struct_time.tm_sec:02}{weekday:01}{calendar_week:02}{day_of_year:03}"
     digits = []
@@ -91,7 +91,7 @@ def _day_of_year(struct_time):
             day_of_year += 1
     return day_of_year
 
-def iso_calendar_week(struct_time):
+def _iso_calendar_week(struct_time):
     """
     Return ISO calendar
     """
@@ -121,3 +121,4 @@ def ntp_sync():
         return True
     else:
         return False
+
