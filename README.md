@@ -136,7 +136,7 @@ The left and right dots are controlled by 2x K115ID1 wired to the Pico 2W. The d
 
 - Go to the [releases](https://github.com/4bitFox/divergence-meter/releases) and download the files (source files are not needed).
 - Put the circuitpython uf2 onto the root of the pico. It will flash CircuitPython...
-  - If you need to reflash use the flash_nuke and then do the above step. Beware that this deletes everything you have on the pico curently!
+  - If you need to reflash use the flash_nuke.uf2 and then do the above step. Beware that this deletes everything you have on the pico curently!
 - Copy/Move the contents of the unpacked CIRCUITPY.zip onto the pico. if you didn't rename the FAT32 pertition, it should show up as CIRCUITPY.
 - If you power the Pico, boot.py and main.py should start running.
  
