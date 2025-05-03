@@ -1,8 +1,8 @@
 # Divergence Meter
 
-### Main Loop:
-
 https://github.com/user-attachments/assets/454079d6-4c25-4eff-9755-33558b0b4115
+
+### Main Loop:
 
 - Display Time
 - Every Minute:
