@@ -5,7 +5,7 @@ import an_dt
 from time import sleep
 
 
-#dt.set_dt(2024, 01, 01, 03, 58, 50)
+
 
 try:
     an_test.animation(0.5)
