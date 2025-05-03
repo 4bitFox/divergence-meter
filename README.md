@@ -41,6 +41,8 @@ https://github.com/user-attachments/assets/f7f01907-7353-47da-a86c-e9c85c2cbf1e
 > [!CAUTION]
 > We are working with High Voltage here! Be careful and don't get yourself or others hurt!
 
+I don't want to specify this everywhere but I'll say it just in case; For all the components also wire them up to 5V and GND so they can work. :-D
+
 ### GPIO on the Pico:
 
 GPIO Pins can be changed in the hw_ files if needed.
