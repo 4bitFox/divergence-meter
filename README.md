@@ -139,6 +139,15 @@ The left and right dots are controlled by 2x K115ID1 wired to the Pico 2W. The d
   - If you need to reflash use the flash_nuke.uf2 and then do the above step. Beware that this deletes everything you have on the pico curently!
 - Copy/Move the contents of the unpacked CIRCUITPY.zip onto the pico. if you didn't rename the FAT32 pertition, it should show up as CIRCUITPY.
 - If you power the Pico, boot.py and main.py should start running.
+
+### Dependencies:
+
+If you clone the repo and don't use the releases version you need to add some dependencies into the lib/ folder on the Pico with CircuitPython:
+- adafruit-circuitpython-connectionmanager
+- adafruit-circuitpython-datetime
+- adafruit-circuitpython-ds3231
+- adafruit-circuitpython-ntp
+- adafruit-circuitpython-register
  
 ## Helpful Datasheets:
 - [K115ID1](https://tubehobby.com/datasheets/k155id1.pdf)
