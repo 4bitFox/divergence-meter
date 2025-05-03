@@ -129,7 +129,7 @@ The Pins for the digits will be wired to the K115ID1 that is wired to the IO Zer
 The pins for the dots will be wired to the K115ID1 that are wired to the Pico 2W. The dots of the 1st tube for example will be wired to output 0 of the corresponding left/right K115ID1. Then the 2nd tube with output 1, and so on...
 
 ### Notes:
-Note that the 8x K115ID1 wired to the IO Zero 32 (2x PCA9535) are used for all 8 nixie tubes to display the dogots 0-9. Only one digit per tube can be lit at a given time! 
+Note that the 8x K115ID1 wired to the IO Zero 32 (2x PCA9535) are used for all 8 nixie tubes to display the dots 0-9. Only one digit per tube can be lit at a given time! 
 The left and right dots are controlled by 2x K115ID1 wired to the Pico 2W. The dot is decimal shifted between the tubes, meaning e.g the right dot can only be lit in one of the eight tubes at one time, same for the left! Keep this in mind if you want to write code yourself with this wiring, otherwise you can ignore this!
 
 ## Installation:
