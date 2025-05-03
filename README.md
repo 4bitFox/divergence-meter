@@ -113,9 +113,11 @@ K115ID1:
 
 ### Nixie Tubes:
 
+Wire the 170V source to the Anode to the Tube.
+
 #### Digits:
 
-Wire the 170V source to the Anode to the Tube. The Pins for the digits will be wired to the K115ID1 that is wired to the IO Zero 32 (2x PCA9535). Use the datasheet as refrence. 
+The Pins for the digits will be wired to the K115ID1 that is wired to the IO Zero 32 (2x PCA9535). Use the datasheet as refrence. 
 
 #### Dots:
 
