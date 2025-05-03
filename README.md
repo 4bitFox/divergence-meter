@@ -1,5 +1,31 @@
 # Divergence Meter
 
+### Main Loop:
+
+https://github.com/user-attachments/assets/454079d6-4c25-4eff-9755-33558b0b4115
+
+- Display Time
+- Every Minute:
+  - Divergence animation
+  - Display Date
+  - Display Misc. (Weekday, ISO Calendar Week, Day of Year)
+- Every Hour:
+  - Cycle all digits (anti cathode poisoning routine)
+- Every Day:
+  - NTP network time-sync (at 03:30)
+
+### Startup Sequence:
+
+https://github.com/user-attachments/assets/f7f01907-7353-47da-a86c-e9c85c2cbf1e
+
+- Cycle all digits (selftest & anti cathode poisoning routine)
+- Divergence animation
+- NTP network time-sync
+- -> Start main loop
+
+
+
+
 ## Components I used:
 - 1x Raspberry Pi Pico 2W
 - 10x [K115ID1](https://www.aliexpress.com/item/1005002014120520.html)
