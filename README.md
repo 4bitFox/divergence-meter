@@ -34,8 +34,7 @@ https://github.com/user-attachments/assets/f7f01907-7353-47da-a86c-e9c85c2cbf1e
 
 ## Wiring:
 
-Note that the 8x K115ID1 wired to the IO Zero 32 (2x PCA9535) are used for all 8 nixie tubes to display the dogots 0-9. Only one digit per tube can be lit at a given time! 
-The left and right dots are controlled by 2x K115ID1 wired to the Pico 2W. The dot is decimal shifted between the tubes, meaning e.g the right dot can only be lit in one of the eight tubes at one time, same for the left! Keep this in mind if you want to write code yourself with this wiring, otherwise you can ignore this!
+We are working with High Voltage here! Be careful and don't get yourself or others hurt!
 
 ### GPIO on the Pico:
 
@@ -50,12 +49,12 @@ IO Zero 32 (PCA9535):
 - SCL: GP3
 
 K115ID1:
-- Right Dots:
+- for Right Dots:
   - A: GP12
   - B: GP13
   - C: GP14
   - D: GP15
-- Left Dots:
+- for Left Dots:
   - A: GP19
   - B: GP18
   - C: GP17
@@ -65,47 +64,61 @@ K115ID1:
 
 K115ID1:
 - Bus 1:
-  - Tube 1:
+  - for Tube 1:
     - A: GP0
     - B: GP1
     - C: GP2
     - D: GP3
-  - Tube 2:
+  - for Tube 2:
     - A: GP4
     - B: GP5
     - C: GP6
     - D: GP7
-  - Tube 3:
+  - for Tube 3:
     - A: GP8
     - B: GP9
     - C: GP10
     - D: GP11
-  - Tube 4:
+  - for Tube 4:
     - A: GP12
     - B: GP13
     - C: GP14
     - D: GP15
 - Bus 2:
-  - Tube 5:
+  - for Tube 5:
     - A: GP0
     - B: GP1
     - C: GP2
     - D: GP3
-  - Tube 6:
+  - for Tube 6:
     - A: GP4
     - B: GP5
     - C: GP6
     - D: GP7
-  - Tube 7:
+  - for Tube 7:
     - A: GP8
     - B: GP9
     - C: GP10
     - D: GP11
-  - Tube 8:
+  - for Tube 8:
     - A: GP12
     - B: GP13
     - C: GP14
     - D: GP15
+
+### Nixie Tubes:
+
+#### Digits:
+
+Wire the 170V source to the Anode to the Tube. The Pins for the digits will be wired to the K115ID1 that is wired to the IO Zero 32 (2x PCA9535). Use the datasheet as refrence. 
+
+#### Dots:
+
+The pins for the dots will be wired to the K115ID1 that are wired to the Pico 2W. The dots of the 1st tube for example will be wired to output 0 of the corresponding left/right K115ID1. Then the 2nd tube with output 1, and so on...
+
+### Notes:
+Note that the 8x K115ID1 wired to the IO Zero 32 (2x PCA9535) are used for all 8 nixie tubes to display the dogots 0-9. Only one digit per tube can be lit at a given time! 
+The left and right dots are controlled by 2x K115ID1 wired to the Pico 2W. The dot is decimal shifted between the tubes, meaning e.g the right dot can only be lit in one of the eight tubes at one time, same for the left! Keep this in mind if you want to write code yourself with this wiring, otherwise you can ignore this!
 
  
 ## Helpful Datasheets:
