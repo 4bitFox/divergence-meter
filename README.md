@@ -38,7 +38,8 @@ https://github.com/user-attachments/assets/f7f01907-7353-47da-a86c-e9c85c2cbf1e
 
 ## Wiring:
 
-We are working with High Voltage here! Be careful and don't get yourself or others hurt!
+> [!CAUTION]
+> We are working with High Voltage here! Be careful and don't get yourself or others hurt!
 
 ### GPIO on the Pico:
 
