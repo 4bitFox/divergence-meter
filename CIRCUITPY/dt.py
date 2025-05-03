@@ -28,20 +28,51 @@ def get_dt_tuple():
     d = tuple_of_digits(struct_time)
     return d
 
+struct_time_prev = None
+digits_prev = None
+day_of_month_prev = None
+weekday_prev = None
+calendar_week_prev = None
+day_of_year_prev = None
 
 def tuple_of_digits(struct_time):
     """
     returns a tuple like (2, 0, 2, 5, 0, 3, 2, 9, 2, 0, 1, 4, 2, 8, 6, 1, 3, 0, 8, 8)
                           Y  Y  Y  Y  M  M  D  D  h  h  m  m  s  s  wd cw cw yd yd yd
     """
-    weekday = _weekday(struct_time)
-    calendar_week = _iso_calendar_week(struct_time)
-    day_of_year = _day_of_year(struct_time)
-    string_time = f"{struct_time.tm_year:04}{struct_time.tm_mon:02}{struct_time.tm_mday:02}{struct_time.tm_hour:02}{struct_time.tm_min:02}{struct_time.tm_sec:02}{weekday:01}{calendar_week:02}{day_of_year:03}"
-    digits = []
-    for digit in string_time:
-        digits.append(int(digit))
-    return tuple(digits)
+    global struct_time_prev, digits_prev, day_of_month_prev, weekday_prev, calendar_week_prev, day_of_year_prev
+    
+    # Compute new digits if necessary
+    if struct_time != struct_time_prev:
+        day_of_month = struct_time.tm_mday
+        # Only calculate daily
+        if day_of_month != day_of_month_prev:
+            # Recalculate values
+            weekday = _weekday(struct_time)
+            calendar_week = _iso_calendar_week(struct_time)
+            day_of_year = _day_of_year(struct_time)
+            # Store updated values
+            day_of_month_prev = day_of_month
+            weekday_prev = weekday
+            calendar_week_prev = calendar_week
+            day_of_year_prev = day_of_year
+        else:
+            # Use old values
+            weekday = weekday_prev
+            calendar_week = calendar_week_prev
+            day_of_year = day_of_year_prev
+    
+        string_time = f"{struct_time.tm_year:04}{struct_time.tm_mon:02}{day_of_month:02}{struct_time.tm_hour:02}{struct_time.tm_min:02}{struct_time.tm_sec:02}{weekday:01}{calendar_week:02}{day_of_year:03}"
+        digits = []
+        for digit in string_time:
+            digits.append(int(digit))
+        digits = tuple(digits)
+        digits_prev = digits
+        struct_time_prev = struct_time
+    else:
+        # Use previous digits
+        digits = digits_prev
+    return digits
 
 def _weekday(struct_time=None, year=None, month=None, day_of_month=None):
     """
@@ -121,4 +152,3 @@ def ntp_sync():
         return True
     else:
         return False
-
