@@ -69,6 +69,8 @@ K115ID1:
  
 ### GPIO on the IO Zero 32 (2x PCA9535):
 
+Use the pins on the IO-Expander, not the Pico here!
+
 K115ID1:
 - Bus 1:
   - for Tube 1:
@@ -129,6 +131,13 @@ The pins for the dots will be wired to the K115ID1 that are wired to the Pico 2W
 Note that the 8x K115ID1 wired to the IO Zero 32 (2x PCA9535) are used for all 8 nixie tubes to display the dogots 0-9. Only one digit per tube can be lit at a given time! 
 The left and right dots are controlled by 2x K115ID1 wired to the Pico 2W. The dot is decimal shifted between the tubes, meaning e.g the right dot can only be lit in one of the eight tubes at one time, same for the left! Keep this in mind if you want to write code yourself with this wiring, otherwise you can ignore this!
 
+## Installation:
+
+- Go to the [releases](https://github.com/4bitFox/divergence-meter/releases) and download the files (source files are not needed).
+- Put the circuitpython uf2 onto the root of the pico. It will flash CircuitPython...
+  - If you need to reflash use the flash_nuke and then do the above step. Beware that this deletes everything you have on the pico curently!
+- Copy/Move the contents of the unpacked CIRCUITPY.zip onto the pico. if you didn't rename the FAT32 pertition, it should show up as CIRCUITPY.
+- If you power the Pico, boot.py and main.py should start running.
  
 ## Helpful Datasheets:
 - [K115ID1](https://tubehobby.com/datasheets/k155id1.pdf)
