@@ -124,7 +124,7 @@ def _day_of_year(struct_time):
 
 def _iso_calendar_week(struct_time):
     """
-    Return ISO calendar
+    Return ISO calendar week
     """
     year = struct_time.tm_year
     month = struct_time.tm_mon
