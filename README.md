@@ -149,5 +149,6 @@ If you clone the repo and don't use the releases version you need to add some de
 - adafruit-circuitpython-ntp
 - adafruit-circuitpython-register
  
-## Helpful Datasheets:
+## Helpful Datasheets/Websites:
 - [K115ID1](https://tubehobby.com/datasheets/k155id1.pdf)
+- [GAZOTRON IN-14](https://www.tube-tester.com/sites/nixie/data/in-14/in-14.htm)
