@@ -118,7 +118,7 @@ K115ID1:
 
 ### Nixie Tubes:
 
-Wire the 170V source to the Anode to the Tube.
+Wire the 170V source to the Anode to the Tube. Don't forget the resistor inbetween!!
 
 #### Digits:
 
