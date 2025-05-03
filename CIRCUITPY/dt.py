@@ -109,7 +109,7 @@ def _leap_year(struct_time=None, year=None):
     
 def _day_of_year(struct_time):
     """
-    Returns the day of the month. Starts with 1
+    Returns the day of the year. Starts with 1
     """
     year = struct_time.tm_year
     month = struct_time.tm_mon
