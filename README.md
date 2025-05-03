@@ -23,13 +23,90 @@ https://github.com/user-attachments/assets/f7f01907-7353-47da-a86c-e9c85c2cbf1e
 - NTP network time-sync
 - -> Start main loop
 
-
-
-
 ## Components I used:
 - 1x Raspberry Pi Pico 2W
 - 10x [K115ID1](https://www.aliexpress.com/item/1005002014120520.html)
 - 1x [DS3231 AT24C32 RTC Module](https://www.aliexpress.com/item/32533518502.html)
+- 1x [IO Zero 32 (PCA9535)](https://www.abelectronics.co.uk/p/86/io-zero-32)
 - 8x [Nixie Indicator Tubes IN-14 (0-9 and 2 dots)](https://soviet-tubes.com/product/in-14-nixie-tube/)
 - 8x [Resistor (In my case 10 kΩ)](https://www.aliexpress.com/item/32847096736.html)
 - 1x [5V to 170V Boost Converter for Nixies](https://www.aliexpress.com/item/1005005899219043.html)
+
+## Wiring:
+
+Note that the 8x K115ID1 wired to the IO Zero 32 (2x PCA9535) are used for all 8 nixie tubes to display the dogots 0-9. Only one digit per tube can be lit at a given time! 
+The left and right dots are controlled by 2x K115ID1 wired to the Pico 2W. The dot is decimal shifted between the tubes, meaning e.g the right dot can only be lit in one of the eight tubes at one time, same for the left! Keep this in mind if you want to write code yourself with this wiring, otherwise you can ignore this!
+
+### GPIO on the Pico:
+
+GPIO Pins can be changed in the hw_ files if needed.
+
+DS3231 RTC:
+- SDA: GP0
+- SCL: GP1
+
+IO Zero 32 (PCA9535):
+- SDA: GP2
+- SCL: GP3
+
+K115ID1:
+- Right Dots:
+  - A: GP12
+  - B: GP13
+  - C: GP14
+  - D: GP15
+- Left Dots:
+  - A: GP19
+  - B: GP18
+  - C: GP17
+  - D: GP16
+ 
+### GPIO on the IO Zero 32 (2x PCA9535):
+
+K115ID1:
+- Bus 1:
+  - Tube 1:
+    - A: GP0
+    - B: GP1
+    - C: GP2
+    - D: GP3
+  - Tube 2:
+    - A: GP4
+    - B: GP5
+    - C: GP6
+    - D: GP7
+  - Tube 3:
+    - A: GP8
+    - B: GP9
+    - C: GP10
+    - D: GP11
+  - Tube 4:
+    - A: GP12
+    - B: GP13
+    - C: GP14
+    - D: GP15
+- Bus 2:
+  - Tube 5:
+    - A: GP0
+    - B: GP1
+    - C: GP2
+    - D: GP3
+  - Tube 6:
+    - A: GP4
+    - B: GP5
+    - C: GP6
+    - D: GP7
+  - Tube 7:
+    - A: GP8
+    - B: GP9
+    - C: GP10
+    - D: GP11
+  - Tube 8:
+    - A: GP12
+    - B: GP13
+    - C: GP14
+    - D: GP15
+
+ 
+## Helpful Datasheets:
+- [K115ID1](https://tubehobby.com/datasheets/k155id1.pdf)
