@@ -1,6 +1,8 @@
 # Divergence Meter
 
-https://github.com/user-attachments/assets/454079d6-4c25-4eff-9755-33558b0b4115
+![vlcsnap-2025-05-03-15h28m24s842](https://github.com/user-attachments/assets/3e7c3a4f-3c39-4b51-9f8e-2aedccd4a3fe)
+
+## Features:
 
 ### Main Loop:
 
@@ -13,15 +15,17 @@ https://github.com/user-attachments/assets/454079d6-4c25-4eff-9755-33558b0b4115
   - Cycle all digits (anti cathode poisoning routine)
 - Every Day:
   - NTP network time-sync (at 03:30)
+ 
+https://github.com/user-attachments/assets/454079d6-4c25-4eff-9755-33558b0b4115
 
 ### Startup Sequence:
-
-https://github.com/user-attachments/assets/f7f01907-7353-47da-a86c-e9c85c2cbf1e
 
 - Cycle all digits (selftest & anti cathode poisoning routine)
 - Divergence animation
 - NTP network time-sync
 - -> Start main loop
+
+https://github.com/user-attachments/assets/f7f01907-7353-47da-a86c-e9c85c2cbf1e
 
 ## Components I used:
 - 1x Raspberry Pi Pico 2W
