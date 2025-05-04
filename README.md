@@ -142,7 +142,7 @@ The left and right dots are controlled by 2x K115ID1 wired to the Pico 2W. The d
 
 ### Dependencies:
 
-If you clone the repo and don't use the releases version you need to add some dependencies into the lib/ folder on the Pico with CircuitPython:
+If you clone the repo and don't use the releases version you need to add some dependencies into the lib/ folder on the Pico with CircuitPython (or use the lib/ folder drom inside the CIRCUITPY.zip):
 - adafruit-circuitpython-connectionmanager
 - adafruit-circuitpython-datetime
 - adafruit-circuitpython-ds3231
