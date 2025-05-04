@@ -125,7 +125,7 @@ Make sure to plan out how you wanna wire the Nixies, as it's probably going to g
 ![Screenshot From 2025-05-04 14-09-56](https://github.com/user-attachments/assets/ed8f835f-f115-463c-8f0a-ab7fd842631f)
 ![Screenshot From 2025-05-04 14-12-50](https://github.com/user-attachments/assets/726187fe-5b2d-4aaf-9a47-201f173a326e)
 
-Left image has all the left dots wired and working, right image is everything wired completely. I know it's not pretty and yes this took 4ever!
+Left (or upper) image has all the left dots wired and working, right (or lower) image is everything wired completely. I know it's not pretty and yes this took 4ever!
 
 #### Digits:
 
