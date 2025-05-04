@@ -23,7 +23,7 @@ https://github.com/user-attachments/assets/454079d6-4c25-4eff-9755-33558b0b4115
 - Cycle all digits (selftest & anti cathode poisoning routine)
 - Divergence animation
 - NTP network time-sync
-  - Displays date when sync successfull, otherwise will display all zeros. Date and Time can be set manually with dt.set_dt_input() or dt.set_dt(Y, M, D, h, m, s). For that you can use e.g. Thonny.
+  - Displays date when sync successfull, otherwise will display all zeros. Date and Time can be set manually with `import dt`, then `dt.set_dt_input()` (manual input in terminal) or `dt.set_dt(Y, M, D, h, m, s)` (pass datetime values on function call). For that you can use e.g. Thonny.
 - -> Start main loop
 
 https://github.com/user-attachments/assets/f7f01907-7353-47da-a86c-e9c85c2cbf1e
