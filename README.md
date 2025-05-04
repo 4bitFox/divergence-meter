@@ -73,7 +73,7 @@ K115ID1:
 Use the pins on the IO-Expander, not the Pico here!
 
 K115ID1:
-- Bus 1:
+- Bus 1 (on IO Zero 32):
   - for Tube 1:
     - A: Pin1
     - B: Pin2
@@ -94,7 +94,7 @@ K115ID1:
     - B: Pin14
     - C: Pin15
     - D: Pin16
-- Bus 2:
+- Bus 2 (on IO Zero 32):
   - for Tube 5:
     - A: Pin1
     - B: Pin2
