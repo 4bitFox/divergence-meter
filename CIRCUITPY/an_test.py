@@ -34,8 +34,17 @@ def animation_loop(t=0.5, duration=None):
         if duration != None:
                 time = monotonic()
                 if time - time_reference >= duration:
-                    n.all_off()
-                    return
+                    break
+    while dot_pos:
+        n.set_dot(dot_pos, "R")
+        n.set_dot(dot_pos, "L")
+        dot_pos += 1
+        if dot_pos > 8:
+            dot_pos = None
+        n.update()
+        sleep(t)
+    n.all_off()
+    return
 
 
 def animation(t=0.5):
@@ -65,4 +74,3 @@ def routine():
     d = dt.get_dt_tuple()
     if d[10] == 5 and d[11] == 9:
         animation_loop(t=0.5, duration=60)
-
