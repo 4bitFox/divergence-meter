@@ -72,7 +72,50 @@ def misc(duration=3):
     n.update()
     sleep(duration)
     n.all_off()
-    
+
+def days_between_dates():
+    dbd_list = eval(os.getenv("DAYS_BETWEEN_DATES"))
+    for entry in dbd_list:
+        date1 = entry[0]
+        struct_time1 = None
+        if date1 == None:
+            struct_time1 = dt.struct_time_prev
+            date1 = (None, None, None)
+        date2 = entry[1]
+        struct_time2 = None
+        if date2 == None:
+            struct_time2 = dt.struct_time_prev
+            date2 = (None, None, None)
+        duration = entry[2]
+        alignment = entry[3]
+        
+        delta = dt.days_between_dates(struct_time1=struct_time1, struct_time2=struct_time2, Y1=date1[0], M1=date1[1], D1=date1[2], Y2=date2[0], M2=date2[1], D2=date2[2])
+        delta_string_abs = str(abs(delta))
+        if alignment == "R":
+            delta_string = "n" * (8 - len(delta_string_abs)) + delta_string_abs  # pad left
+        else:
+            delta_string = delta_string_abs + "n" * (8 - len(delta_string_abs))  # pad right
+        digits = []
+        for digit in delta_string:
+            if digit == "n": # replace n woth None
+                digits.append(None)
+            else:
+                digits.append(int(digit))
+        digits = tuple(digits)
+
+        for tube, digit in enumerate(digits, start=1):
+            n.set_digit(digit, tube)
+        if delta < 0:
+            n.set_dot(1, "L") # Negative inddicator
+        else:
+            n.set_dot(None, "L")
+        n.update()
+        sleep(duration)
+    n.all_off()
+
+
+
+
 def ntp_sync(force=False):
     """
     Sync time with ntp server when it is currently the time specified in settings.toml NTP_DAILY_SYNC_TIME or when force=True
@@ -113,3 +156,4 @@ def ntp_sync(force=False):
                     sleep(0.5)
                 n.all_off()
                 sleep(0.2)
+
