@@ -92,11 +92,9 @@ def weekday(struct_time=None, year=None, month=None, day_of_month=None):
     """
     Returns the weekday starting from 1
     """
-    if year == None:
+    if struct_time:
         year = struct_time.tm_year
-    if month == None:
         month = struct_time.tm_mon
-    if day_of_month == None:
         day_of_month = struct_time.tm_mday
     return dt.date(year, month, day_of_month).isoweekday()
     
@@ -158,8 +156,7 @@ def iso_calendar_week(struct_time):
             week = 0
     return week+1
 
-def days_between_dates(struct_time1=None, struct_time2=None, 
-                       Y1=None, M1=None, D1=None, Y2=None, M2=None, D2=None):
+def days_between_dates(struct_time1=None, struct_time2=None, Y1=None, M1=None, D1=None, Y2=None, M2=None, D2=None):
     """
     Returns the number of days between two dates.
     """
@@ -173,7 +170,8 @@ def days_between_dates(struct_time1=None, struct_time2=None,
         M2 = struct_time2.tm_mon
         D2 = struct_time2.tm_mday
 
-    date1 = dt.date(Y1, M1, D1)
-    date2 = dt.date(Y2, M2, D2)
-    delta = date2 - date1
-    return delta.days
+    datetime1 = dt.datetime(Y1, M1, D1)
+    datetime2 = dt.datetime(Y2, M2, D2)
+    datetime_delta = datetime2 - datetime1
+    delta = datetime_delta.days
+    return delta
