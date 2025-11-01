@@ -78,7 +78,7 @@ def ntp_sync(force = False):
                     n.update()
                     sleep(0.2)
             n.all_off()
-            status = dt.ntp_sync()
+            status = dt.set_dt_ntp()
             if status:
                 break
         if status == True:
@@ -100,4 +100,3 @@ def ntp_sync(force = False):
                     sleep(0.5)
                 n.all_off()
                 sleep(0.2)
-
