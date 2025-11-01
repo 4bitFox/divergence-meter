@@ -17,7 +17,9 @@
   - Display amount of days between two dates (e.g. birth to present).
     - Configurable in settings.toml:
       - Example:
-        - `DAYS_BETWEEN_DATES="[((2002,08,25), None, 2, 'L', 'Birthday'), ((YYYY,MM,DD), (YYYY,MM,DD), display_duration, '<L (left) or R (right)>', 'Note to yourself (Code does not use this)')]"`
+        - `DAYS_BETWEEN_DATES="[((2002,08,25), None, 2, 'L', 'Birthday'), ((YYYY,MM,DD), (YYYY,MM,DD), display_duration, '<L (left) or R (right)>', 'Note to yourself (Code does not use this)'), (...), ...]"`
+      - To disable:
+        - `DAYS_BETWEEN_DATES="[]"`
       - `None` is the placeholder for today.
 - Every Hour:
   - Cycle all digits (anti cathode poisoning routine)
