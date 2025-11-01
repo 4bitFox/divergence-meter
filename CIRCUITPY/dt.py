@@ -48,21 +48,21 @@ def tuple_of_digits(struct_time):
         # Only calculate daily
         if day_of_month != day_of_month_prev:
             # Recalculate values
-            weekday = _weekday(struct_time)
-            calendar_week = _iso_calendar_week(struct_time)
-            day_of_year = _day_of_year(struct_time)
+            weekday_var = weekday(struct_time)
+            calendar_week_var = iso_calendar_week(struct_time)
+            day_of_year_var = day_of_year(struct_time)
             # Store updated values
             day_of_month_prev = day_of_month
-            weekday_prev = weekday
-            calendar_week_prev = calendar_week
-            day_of_year_prev = day_of_year
+            weekday_prev = weekday_var
+            calendar_week_prev = calendar_week_var
+            day_of_year_prev = day_of_year_var
         else:
             # Use old values
-            weekday = weekday_prev
-            calendar_week = calendar_week_prev
-            day_of_year = day_of_year_prev
+            weekday_var = weekday_prev
+            calendar_week_var = calendar_week_prev
+            day_of_year_var = day_of_year_prev
     
-        string_time = f"{struct_time.tm_year:04}{struct_time.tm_mon:02}{day_of_month:02}{struct_time.tm_hour:02}{struct_time.tm_min:02}{struct_time.tm_sec:02}{weekday:01}{calendar_week:02}{day_of_year:03}"
+        string_time = f"{struct_time.tm_year:04}{struct_time.tm_mon:02}{day_of_month:02}{struct_time.tm_hour:02}{struct_time.tm_min:02}{struct_time.tm_sec:02}{weekday_var:01}{calendar_week_var:02}{day_of_year_var:03}"
         digits = []
         for digit in string_time:
             digits.append(int(digit))
@@ -74,7 +74,7 @@ def tuple_of_digits(struct_time):
         digits = digits_prev
     return digits
 
-def _weekday(struct_time=None, year=None, month=None, day_of_month=None):
+def weekday(struct_time=None, year=None, month=None, day_of_month=None):
     """
     Returns the weekday starting from 1
     """
@@ -87,7 +87,7 @@ def _weekday(struct_time=None, year=None, month=None, day_of_month=None):
     return dt.date(year, month, day_of_month).isoweekday()
     
 
-def _first_weekday_of_year(struct_time):
+def first_weekday_of_year(struct_time):
     """
     Returns the weekday. Starts with 1 being Monday
     """
@@ -95,7 +95,7 @@ def _first_weekday_of_year(struct_time):
     first_weekday_of_year = dt.date(year, 1, 1).isoweekday()
     return first_weekday_of_year
 
-def _leap_year(struct_time=None, year=None):
+def leap_year(struct_time=None, year=None):
     """
     Return True when leap year
     """
@@ -107,7 +107,7 @@ def _leap_year(struct_time=None, year=None):
     else:
         return False
     
-def _day_of_year(struct_time):
+def day_of_year(struct_time):
     """
     Returns the day of the year. Starts with 1
     """
@@ -117,12 +117,12 @@ def _day_of_year(struct_time):
     # calculate day of year
     day_of_year = sum([31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][:month - 1]) + day_of_month
     # account for leap year
-    if _leap_year(year=year):
+    if leap_year(year=year):
         if month > 2:
             day_of_year += 1
     return day_of_year
 
-def _iso_calendar_week(struct_time):
+def iso_calendar_week(struct_time):
     """
     Return ISO calendar week
     """
