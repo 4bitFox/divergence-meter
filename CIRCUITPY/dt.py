@@ -6,8 +6,11 @@ import time
 
 
 
-def set_dt(Y, M, D, h, m, s):
-    rtc.set_dt(Y, M, D, h, m, s)
+def set_dt(struct_time=None, Y=None, M=None, D=None, h=None, m=None, s=None):
+    if struct_time:
+        rtc.set_dt_struct_time(struct_time)
+    else:
+        rtc.set_dt(Y, M, D, h, m, s)
 
 def set_dt_input():
     Y = int(input("Input Year in YYYY: "))
@@ -17,14 +20,25 @@ def set_dt_input():
     m = int(input("Input Minutes in mm: "))
     s = int(input("Input Seconds in ss: "))
     
-    set_dt(Y, M, D, h, m, s)
+    set_dt(None, Y, M, D, h, m, s)
     print("Done!")
+    
+def set_dt_ntp():
+    struct_time = wifi.get_ntp_struct_time()
+    if struct_time != None:
+        set_dt(struct_time)
+        return True
+    else:
+        return False
 
-def set_dt_struct_time(struct_time):
-    rtc.set_dt_struct_time(struct_time)
+
+def get_dt_struct_time():
+    struct_time = rtc.get_struct_time()
+    return struct_time
+
 
 def get_dt_tuple():
-    struct_time = rtc.get_struct_time()
+    struct_time = get_dt_struct_time()
     d = tuple_of_digits(struct_time)
     return d
 
@@ -144,11 +158,22 @@ def iso_calendar_week(struct_time):
             week = 0
     return week+1
 
+def days_between_dates(struct_time1=None, struct_time2=None, 
+                       Y1=None, M1=None, D1=None, Y2=None, M2=None, D2=None):
+    """
+    Returns the number of days between two dates.
+    """
+    if struct_time1 != None:
+        Y1 = struct_time1.tm_year
+        M1 = struct_time1.tm_mon
+        D1 = struct_time1.tm_mday
 
-def ntp_sync():
-    struct_time = wifi.get_ntp_struct_time()
-    if struct_time != None:
-        set_dt_struct_time(struct_time)
-        return True
-    else:
-        return False
+    if struct_time2 != None:
+        Y2 = struct_time2.tm_year
+        M2 = struct_time2.tm_mon
+        D2 = struct_time2.tm_mday
+
+    date1 = dt.date(Y1, M1, D1)
+    date2 = dt.date(Y2, M2, D2)
+    delta = date2 - date1
+    return delta.days
