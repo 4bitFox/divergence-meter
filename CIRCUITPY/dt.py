@@ -12,7 +12,7 @@ def set_dt(Y, M, D, h, m, s):
 def set_dt_input():
     Y = int(input("Input Year in YYYY: "))
     M = int(input("Input Month in MM: "))
-    D = int(input("Input Year in DD: "))
+    D = int(input("Input Day in DD: "))
     h = int(input("Input Hour in hh: "))
     m = int(input("Input Minutes in mm: "))
     s = int(input("Input Seconds in ss: "))
