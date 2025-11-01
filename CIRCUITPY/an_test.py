@@ -5,12 +5,9 @@ from time import sleep, monotonic
 
 
 
-def animation_loop(t=0.5, duration=None):
-    if duration != None:
-        time_reference = monotonic()
-    
+def animation_loop(t=0.5):
     dot_pos = 1
-    while True:
+    for i in range(0, 9): # loop 9 times
         for digit in range(0, 11):
             if digit == 10:
                 for tube in range(1, 9):
@@ -30,19 +27,6 @@ def animation_loop(t=0.5, duration=None):
             
             n.update()
             sleep(t)
-        
-        if duration != None:
-                time = monotonic()
-                if time - time_reference >= duration:
-                    break
-    while dot_pos:
-        n.set_dot(dot_pos, "R")
-        n.set_dot(dot_pos, "L")
-        dot_pos += 1
-        if dot_pos > 8:
-            dot_pos = None
-        n.update()
-        sleep(t)
     n.all_off()
     return
 
@@ -73,4 +57,4 @@ def routine():
     """
     d = dt.get_dt_tuple()
     if d[10] == 5 and d[11] == 9:
-        animation_loop(t=0.5, duration=60)
+        animation_loop(t=0.5)
