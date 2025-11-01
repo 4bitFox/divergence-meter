@@ -8,3 +8,5 @@ WIFI_PASSWORD="PASSWD"
 NTP_DAILY_SYNC_TIME="03:00"
 
 TZ_OFFSET=0
+
+DAYS_BETWEEN_DATES="[((2002,08,25), None, 2, 'L', 'Birthday'), ((2085,08,25), None, 2, 'R', 'Life expectancy')]"
