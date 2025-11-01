@@ -1,3 +1,4 @@
+import os
 import dt
 import hw_nixie as n
 from time import sleep
@@ -8,6 +9,9 @@ from time import sleep
 
 
 def time():
+    """
+    Displays current time accureate to the second until the next minute starts.
+    """
     d_prev = None
     dot_pos_1 = "R"
     dot_pos_2 = "L"
@@ -36,6 +40,9 @@ def time():
         sleep(0.01)
 
 def date(duration=3):
+    """
+    Displays date.
+    """
     d = dt.get_dt_tuple()
     n.set_digit(d[6], 1)
     n.set_digit(d[7], 2)
@@ -52,6 +59,9 @@ def date(duration=3):
     n.all_off()
 
 def misc(duration=3):
+    """
+    Displays weekday, calendar week and day of year.
+    """
     d = dt.get_dt_tuple()
     n.set_digit(d[14], 1)
     n.set_digit(d[15], 3)
@@ -63,13 +73,16 @@ def misc(duration=3):
     sleep(duration)
     n.all_off()
     
-def ntp_sync(force = False):
+def ntp_sync(force=False):
     """
-    Sync time with ntp server when it is 03:30 or force=True
+    Sync time with ntp server when it is currently the time specified in settings.toml NTP_DAILY_SYNC_TIME or when force=True
     """
     d = dt.get_dt_tuple()
+
+    sync_time_str = os.getenv("NTP_DAILY_SYNC_TIME")
+    sync_time_tuple = (int(sync_time_str[0]), int(sync_time_str[1]), int(sync_time_str[3]), int(sync_time_str[4]))
     
-    if d[8] == 0 and d[9] == 3 and d[10] == 3 and d[11] == 0 or force:
+    if d[8] == sync_time_tuple[0] and d[9] == sync_time_tuple[1] and d[10] == sync_time_tuple[2] and d[11] == sync_time_tuple[3] or force:
         for attempts in range(3):
             for dot_cycles in range(3):
                 for dot_pos in range(1, 5):
