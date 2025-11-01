@@ -7,14 +7,27 @@
 ### Main Loop:
 
 - Display Time
+  - TimeZone configurable in settings.toml:
+    - Example:
+      - `TZ_OFFSET=0`
 - Every Minute:
   - Divergence animation
   - Display Date
   - Display Misc. (Weekday, ISO Calendar Week, Day of Year)
+  - Display amount of days between two dates (e.g. birth to present).
+    - Configurable in settings.toml:
+      - Example:
+        - `DAYS_BETWEEN_DATES="[((2002,08,25), None, 2, 'L', 'Birthday'), ((YYYY,MM,DD), (YYYY,MM,DD), display_duration, '<L (left) or R (right)>', 'Note to yourself (Code does not use this)')]"`
+      - `None` is the placeholder for today.
 - Every Hour:
   - Cycle all digits (anti cathode poisoning routine)
 - Every Day:
-  - NTP network time-sync (at 03:30)
+  - NTP network time-sync
+    - Configurable in settings.toml:
+      - Example:
+        - `WIFI_SSID="SSID"`
+        - `WIFI_PASSWORD="PASSWD"`
+        - `NTP_DAILY_SYNC_TIME="03:00"`
  
 https://github.com/user-attachments/assets/454079d6-4c25-4eff-9755-33558b0b4115
 
@@ -23,7 +36,7 @@ https://github.com/user-attachments/assets/454079d6-4c25-4eff-9755-33558b0b4115
 - Cycle all digits (selftest & anti cathode poisoning routine)
 - Divergence animation
 - NTP network time-sync
-  - Displays date when sync successfull, otherwise will display all zeros. Date and Time can be set manually with `import dt`, then `dt.set_dt_input()` (manual input in terminal) or `dt.set_dt(Y, M, D, h, m, s)` (pass datetime values on function call). For that you can use e.g. [Thonny](https://thonny.org/).
+  - Displays date when sync successfull, otherwise will display all zeros. Date and Time can be set manually with `import dt`, then `dt.set_dt_input()` (manual input in terminal) or `dt.set_dt(None, Y, M, D, h, m, s)` (pass datetime values on function call). For that you can use e.g. [Thonny](https://thonny.org/).
 - -> Start main loop
 
 https://github.com/user-attachments/assets/f7f01907-7353-47da-a86c-e9c85c2cbf1e
