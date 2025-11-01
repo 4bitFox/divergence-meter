@@ -18,12 +18,13 @@ try:
         an_divergence.animation()
         an_dt.date()
         an_dt.misc()
+        an_dt.days_between_dates()
         
-        # routines
-        an_test.routine()
-        an_dt.ntp_sync()
+        # routines (these functions only run at specific times)
+        an_test.routine() # Runs every hour to improve health of nixie tubes.
+        an_dt.ntp_sync() # Runs daily at NTP_DAILY_SYNC_TIME (see settings.toml).
 except BaseException as e:
-    print("CRITICAL ERROR:", e)
+    print("(╥﹏╥)    CRITICAL ERROR:", e)
 finally:
     n.all_off()
 
