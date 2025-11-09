@@ -134,6 +134,7 @@ def ntp_sync(force=False):
                     n.update()
                     sleep(0.2)
             n.all_off()
+            n.update()
             status = dt.set_dt_ntp()
             if status:
                 break
@@ -143,7 +144,7 @@ def ntp_sync(force=False):
                     date(duration=2)
                 else:
                     date(duration=0.5)
-                n.all_off()
+                n.update()
                 sleep(0.2)
         elif status == False:
             for i in range(3):
@@ -156,4 +157,3 @@ def ntp_sync(force=False):
                     sleep(0.5)
                 n.all_off()
                 sleep(0.2)
-

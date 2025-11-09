@@ -11,6 +11,7 @@ try:
     an_test.animation(0.5)
     sleep(1)
     an_divergence.animation()
+    n.update()
     sleep(1)
     an_dt.ntp_sync(force=True)
     while True:
@@ -27,4 +28,4 @@ except BaseException as e:
     print("(╥﹏╥)    CRITICAL ERROR:", e)
 finally:
     n.all_off()
-
+    n.update()
