@@ -42,7 +42,6 @@ def run_instructionlist():
     try:
         serial_input = read_serial()
         if serial_input:
-            print(str(serial_input))
             for instruction in serial_input:
                 tube_states = instruction[0]
                 dot_states = instruction[1]
