@@ -2,6 +2,7 @@ import hw_nixie as n
 import an_test
 import an_divergence
 import an_dt
+import an_serial
 from time import sleep
 
 
@@ -20,6 +21,7 @@ try:
         an_dt.date()
         an_dt.misc()
         an_dt.days_between_dates()
+        an_serial.run_instructionlist()
         
         # routines (these functions only run at specific times)
         an_test.routine() # Runs every hour to improve health of nixie tubes.
