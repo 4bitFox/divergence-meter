@@ -57,4 +57,5 @@ def run_instructionlist():
         n.all_off()
         n.update()
     finally:
+        n.all_off()
         return
