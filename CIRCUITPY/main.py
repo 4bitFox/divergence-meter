@@ -21,7 +21,7 @@ try:
         an_dt.date()
         an_dt.misc()
         an_dt.days_between_dates()
-        an_serial.run_instructionlist()
+        # an_serial.run_instructionlist()    # buggy.
         
         # routines (these functions only run at specific times)
         an_test.routine() # Runs every hour to improve health of nixie tubes.
