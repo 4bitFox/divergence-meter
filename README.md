@@ -58,7 +58,7 @@ https://github.com/user-attachments/assets/f7f01907-7353-47da-a86c-e9c85c2cbf1e
 > We are working with HIGH VOLTAGE here, you have to know what you are doing! I'm not responsibe for anything that might happen! Be careful and don't get yourself or others hurt!
 
 I don't want to specify this everywhere but I'll say it just in case; For all the components also wire them up to 5V and GND so they can work. :-D
-The Raspberry Pi Pico provides 3.3 V on its GPIO for devices that need it. 
+The Raspberry Pi Pico provides 3.3V on its GPIO for devices that need it. 
 
 ### GPIO on the Pico:
 
@@ -165,7 +165,7 @@ The left and right dots are controlled by 2x K115ID1 wired to the Pico 2W. The d
 
 ### Dependencies:
 
-If you clone the repo and don't use the releases version you need to add some dependencies into the lib/ folder on the Pico with CircuitPython (or use the lib/ folder drom inside the CIRCUITPY.zip):
+If you clone the repo and don't use the releases version you need to add some dependencies into the lib/ folder on the Pico with CircuitPython (or use the lib/ folder from inside the CIRCUITPY.zip):
 - adafruit-circuitpython-connectionmanager
 - adafruit-circuitpython-datetime
 - adafruit-circuitpython-ds3231
